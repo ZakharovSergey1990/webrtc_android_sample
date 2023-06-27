@@ -28,7 +28,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 interface WebSocketService {
-    fun connect(username: String, address: String)
+    fun connect(username: String, address: String, port: Int)
 }
 
 class WebSocketServiceImpl @Inject constructor(): WebSocketService {
@@ -61,14 +61,13 @@ class WebSocketServiceImpl @Inject constructor(): WebSocketService {
     private var currentWebSocketSession: DefaultClientWebSocketSession? = null
 
 
-    override fun connect(username: String, address: String) {
+    override fun connect(username: String, address: String, port: Int) {
         Log.i(TAG, "connect: $username, address = $address")
         CoroutineScope(Dispatchers.IO).launch {
 
 
             try {
-               // httpClient.webSocket(HttpMethod.Get, "169.254.227.41", 8080, "ws/$username") {
-                httpClient.webSocket(HttpMethod.Get, address,null, "ws/$username") {
+                httpClient.webSocket(HttpMethod.Get, address,port, "ws/$username") {
 
                     Log.i(TAG, "connect: $this")
 

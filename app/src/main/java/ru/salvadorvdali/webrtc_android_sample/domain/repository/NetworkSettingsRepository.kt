@@ -4,7 +4,7 @@ interface NetworkSettingsRepository {
 
     fun savePort(port: Int)
 
-    fun getPort(): Int?
+    fun getPort(): Int
 
     fun getHost(): String
 

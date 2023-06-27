@@ -23,6 +23,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import ru.salvadorvdali.webrtc_android_sample.data.network.HttpSourceImpl
 import ru.salvadorvdali.webrtc_android_sample.data.network.WebSocketServiceImpl
+import ru.salvadorvdali.webrtc_android_sample.presentation.call.CallPage
+import ru.salvadorvdali.webrtc_android_sample.presentation.call.CallPageViewModel
 import ru.salvadorvdali.webrtc_android_sample.presentation.login.LoginPage
 import ru.salvadorvdali.webrtc_android_sample.presentation.login.LoginViewModel
 import ru.salvadorvdali.webrtc_android_sample.presentation.navigation.NavigationActions
@@ -53,6 +55,11 @@ class MainActivity : ComponentActivity() {
                             Log.i("MainActivity", "NavigationActions.MEMBERS_PAGE")
                             val vm = hiltViewModel<UsersPageViewModel>().apply { initNavActions(actions) }
                             UsersPage(vm = vm)
+                        }
+                        composable( NavigationActions.CALL_PAGE ){
+                            Log.i("MainActivity", "NavigationActions.CALL_PAGE")
+                            val vm = hiltViewModel<CallPageViewModel>().apply { initNavActions(actions) }
+                            CallPage(vm = vm)
                         }
                     }
                 }

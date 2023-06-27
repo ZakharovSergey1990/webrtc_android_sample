@@ -10,10 +10,10 @@ import javax.inject.Inject
 class InitConnectionUseCase @Inject constructor(
     private val webSocketService: WebSocketService
 ) {
-        fun invoke(name: String, address: String): Flow<Resource<Unit>> {
+        fun invoke(name: String, address: String, port: Int): Flow<Resource<Unit>> {
             return flow {
                 emit(Resource.Loading)
-                webSocketService.connect(name, address)
+                webSocketService.connect(name, address, port)
             }
         }
 }
